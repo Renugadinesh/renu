@@ -9,14 +9,15 @@ dat$Sex = as.factor(dat$Sex)
 dat$Baltic = as.factor(dat$Baltic)
 head(dat)
 
-filtered_dat_wl <- dat[complete.cases(dat$Wing_length), ]
+filtered_dat_wl = dat[complete.cases(dat$Wing_length), ]
 
 # Create a box plot for WL for Heterophyllum and Oleraceum with sex as grouping variable
-box_plot_wl <- ggplot(filtered_dat_wl, aes(x = Hostplant, y = Wing_length, fill = Sex)) +
+box_plot_wl = ggplot(filtered_dat_wl, aes(x = Hostplant, y = Wing_length, fill = Sex)) +
   geom_boxplot(width = 0.7, position = position_dodge(width = 0.8)) +
-  labs(x = "Hostplant", y = "Wing Length (WL)", title = "Box Plot for WL in Heterophyllum and Oleraceum with Sex") +
+  labs(x = "Hostplant", y = "Wing Length (mm)") +
   scale_fill_manual(values = c("Female" = "pink", "Male" = "blue")) +  # Adjust colors as needed
-  theme_minimal()
+  theme_minimal() +
+  theme(aspect.ratio = 1, legend.box.background = element_rect(color = "black", linewidth = 0.5))
 
 # Display the box plot
 print(box_plot_wl)
@@ -24,14 +25,15 @@ print(box_plot_wl)
 ########################
 
 # Filter out rows with NA in OL
-filtered_dat <- dat[complete.cases(dat$OL), ]
+filtered_dat = dat[complete.cases(dat$OL), ]
 
-box_plot_ol <- ggplot(filtered_dat, aes(x = Hostplant, y = OL, fill = Patry)) +
+box_plot_ol = ggplot(filtered_dat, aes(x = Hostplant, y = OL, fill = Patry)) +
   geom_boxplot(width = 0.7, position = position_dodge(width = 0.8)) +
-  labs(x = "Hostplant", y = "Ovipositor Length (OL)", title = "Box Plot for OL in Heterophyllum and Oleraceum") +
+  labs(x = "Hostplant", y = "Ovipositor Length (mm)") +
   scale_fill_manual(values = c("Allopatry" = "blue", "Sympatry" = "red")) +  # Adjust colors as needed
-  theme_minimal()
-
+  theme_minimal() +
+  theme(aspect.ratio = 1, legend.text = element_text(size = 8), legend.box.background = element_rect(color = "black", linewidth = 0.5))
+  
 # Display the box plot
 print(box_plot_ol)
 
